@@ -1,0 +1,34 @@
+{
+  "name": "regexp-tpl",
+  "version": "1.0.0",
+  "description": "Templated regular expressions.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha tests/*.mocha.js",
+    "coveralls": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report lcovonly -- tests/*.mocha.js -R spec -t 5000 && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "cover": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report html -- tests/*.mocha.js -R spec -t 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:SimpliField/regexp-tpl.git"
+  },
+  "keywords": [
+    "RegExp",
+    "template"
+  ],
+  "author": "Nicolas Froidure (SimpliField)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SimpliField/regexp-tpl/issues"
+  },
+  "homepage": "https://github.com/SimpliField/regexp-tpl",
+  "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.5",
+    "mocha": "^2.0.1"
+  },
+  "dependencies": {
+    "escape-regexp-component": "^1.0.2",
+    "miniquery": "^1.0.0"
+  }
+}
