@@ -44,7 +44,7 @@ Note that `regexp-tpl` template values are evaluated with
 ## API
 
 ### regExp:RegExp regexpTpl(objs:Array, regExpTemplate:String, regExpflags:String)
-Return a `RegExp` instance made with the given `regExpTemplate``and `regExplags`
+Return a `RegExp` instance made with the given `regExpTemplate` and `regExplags`
  filled with the values picked up in the given `objs`.
 
 ## Contribute
