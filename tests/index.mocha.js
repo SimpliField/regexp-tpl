@@ -73,7 +73,7 @@ describe('regexpTpl', function () {
 
     assert.equal(
       regexpTpl(tree, '/:@.bar', '', /(.*\/|^):([a-z0-9_\-\.\*\@\#]+)(\/.*|$)/i).toString(),
-      '//(test|test2)/'
+      '/\\/(test|test2)/'
     );
   });
 
