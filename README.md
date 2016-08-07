@@ -2,7 +2,13 @@
 
 `regexp-tpl` allows you to create templated regular expressions.
 
-[![NPM version](https://badge.fury.io/js/regexp-tpl.png)](https://npmjs.org/package/regexp-tpl) [![Build status](https://secure.travis-ci.org/SimpliField/regexp-tpl.png)](https://travis-ci.org/SimpliField/regexp-tpl) [![Dependency Status](https://david-dm.org/SimpliField/regexp-tpl.png)](https://david-dm.org/SimpliField/regexp-tpl) [![devDependency Status](https://david-dm.org/SimpliField/regexp-tpl/dev-status.png)](https://david-dm.org/SimpliField/regexp-tpl#info=devDependencies) [![Coverage Status](https://coveralls.io/repos/SimpliField/regexp-tpl/badge.png?branch=master)](https://coveralls.io/r/SimpliField/regexp-tpl?branch=master) [![Code Climate](https://codeclimate.com/github/SimpliField/regexp-tpl.png)](https://codeclimate.com/github/SimpliField/regexp-tpl)
+[![NPM version](https://badge.fury.io/js/regexp-tpl.svg)](https://npmjs.org/package/regexp-tpl)
+[![Build status](https://secure.travis-ci.org/SimpliField/regexp-tpl.svg)](https://travis-ci.org/SimpliField/regexp-tpl)
+[![Dependency Status](https://david-dm.org/SimpliField/regexp-tpl.svg)](https://david-dm.org/SimpliField/regexp-tpl)
+[![devDependency Status](https://david-dm.org/SimpliField/regexp-tpl/dev-status.svg)](https://david-dm.org/SimpliField/regexp-tpl#info=devDependencies)
+[![Coverage Status](https://coveralls.io/repos/SimpliField/regexp-tpl/badge.svg?branch=master)](https://coveralls.io/r/SimpliField/regexp-tpl?branch=master)
+[![Code Climate](https://codeclimate.com/github/SimpliField/regexp-tpl.svg)](https://codeclimate.com/github/SimpliField/regexp-tpl)
+[![Package Quality](http://npm.packagequality.com/badge/regexp-tpl.png)](http://packagequality.com/#?package=regexp-tpl)
 
 ## Installation
 
@@ -16,21 +22,21 @@ npm install --save regexp-tpl
 Then, use it:
 
 ```js
-var regexpTpl = require('regexp-tpl');
-var assert = require('assert');
+const regexpTpl = require('regexp-tpl');
+const assert = require('assert');
 
-var fruits = [{
+const fruits = [{
   name: 'orange',
   count: 2,
-  colors: ['orange']
+  colors: ['orange'],
 }, {
 	name: 'banana',
   count: 0,
-  colors: ['yellow', 'white']
+  colors: ['yellow', 'white'],
 }, {
 	name: 'kiwi',
   count: 8,
-  colors: ['brown', 'green']
+  colors: ['brown', 'green'],
 }];
 
 assert(regexpTpl(fruits, 'My car is {colors.#}!').test('My car is brown!'));
@@ -38,14 +44,15 @@ assert(!regexpTpl(fruits, 'My car is {colors.#}!').test('My car is blue!'));
 ```
 
 Note that `regexp-tpl` template values are evaluated with
- [`miniquery`'s' syntax](https://github.com/SimpliField/miniquery).
+ [`miniquery`'s syntax](https://github.com/SimpliField/miniquery).
 
 
 ## API
 
-### regExp:RegExp regexpTpl(objs:Array, regExpTemplate:String, regExpflags:String)
+### regExp:RegExp regexpTpl(objs:Array, regExpTemplate:String, regExpflags:String, tplRegExp:RegExp)
 Return a `RegExp` instance made with the given `regExpTemplate` and `regExplags`
- filled with the values picked up in the given `objs`.
+ filled with the values picked up in the given `objs`. An optionnal `tplRegExp`
+ value can be provided for custom template syntax.
 
 ## Contribute
 
