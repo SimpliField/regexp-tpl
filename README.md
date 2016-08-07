@@ -8,7 +8,8 @@
 [![devDependency Status](https://david-dm.org/SimpliField/regexp-tpl/dev-status.svg)](https://david-dm.org/SimpliField/regexp-tpl#info=devDependencies)
 [![Coverage Status](https://coveralls.io/repos/SimpliField/regexp-tpl/badge.svg?branch=master)](https://coveralls.io/r/SimpliField/regexp-tpl?branch=master)
 [![Code Climate](https://codeclimate.com/github/SimpliField/regexp-tpl.svg)](https://codeclimate.com/github/SimpliField/regexp-tpl)
-[![Package Quality](http://npm.packagequality.com/badge/regexp-tpl.png)](http://packagequality.com/#?package=regexp-tpl)
+[![Package Quality](http://npm.packagequality.com/shield/regexp-tpl.png)](http://packagequality.com/#?package=regexp-tpl)
+[![Dependency Status](https://dependencyci.com/github/SimpliField/regexp-tpl/badge)](https://dependencyci.com/github/SimpliField/regexp-tpl)
 
 ## Installation
 
