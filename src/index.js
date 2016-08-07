@@ -1,12 +1,14 @@
-var escRegExp = require('escape-regexp-component');
-var miniquery = require('miniquery');
-var debug = require('debug')('regexp-tpl');
+'use strict';
 
-var DEFAULT_TEMPLATE = /(.*|^)\{([a-z0-9_\-\.\*\@\#]+)\}(.*|$)/i;
+const escRegExp = require('escape-regexp-component');
+const miniquery = require('miniquery');
+const debug = require('debug')('regexp-tpl');
+
+const DEFAULT_TEMPLATE = /(.*|^)\{([a-z0-9_\-\.\*\@\#]+)\}(.*|$)/i;
 
 function regexpTpl(objs, regExpTemplate, regExpFlags, templateRegExp) {
-  var hasUnmatchedTemplateValues = false;
-  var regExp;
+  let hasUnmatchedTemplateValues = false;
+  let regExp;
 
   if(!(objs instanceof Array)) {
     throw Error('`objs` must be an instanceof `Array`');
@@ -17,22 +19,26 @@ function regexpTpl(objs, regExpTemplate, regExpFlags, templateRegExp) {
 
   debug('Creating a regExp from:', regExpTemplate);
 
+  function findTemplateValue($, $1, $2, $3) {
+    const values = miniquery($2, objs);
+
+    debug('New template value', $2, values);
+
+    if(values.length) {
+      return $1 + (1 === values.length ?
+        escRegExp(values[0]) :
+        '(' + values.map(escRegExp).join('|') + ')') + $3;
+    }
+
+    hasUnmatchedTemplateValues = true;
+    return '';
+  }
+
   while((templateRegExp || DEFAULT_TEMPLATE).test(regExpTemplate)) {
     regExpTemplate = regExpTemplate.replace(
       (templateRegExp || DEFAULT_TEMPLATE),
-      function($, $1, $2, $3) {
-        var values = miniquery($2, objs);
-
-        debug('New template value', $2, values);
-
-        if(values.length) {
-          return $1 + (1 === values.length ?
-            escRegExp(values[0]) :
-            '(' + values.map(escRegExp).join('|') + ')') + $3;
-        }
-
-        hasUnmatchedTemplateValues = true;
-      });
+      findTemplateValue
+    );
   }
 
   if(hasUnmatchedTemplateValues) {

@@ -4,10 +4,16 @@
   "description": "Templated regular expressions.",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha tests/*.mocha.js",
-    "coveralls": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report lcovonly -- tests/*.mocha.js -R spec -t 5000 && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
-    "cover": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report html -- tests/*.mocha.js -R spec -t 5000"
+    "test": "mocha src/*.mocha.js",
+    "cover": "istanbul cover --report html _mocha -- src/**/*.mocha.js -R spec -t 5000",
+    "coveralls:build": "istanbul cover --include-all-sources _mocha --report lcovonly -- src/**/*.mocha.js -R spec -t 5000",
+    "coveralls:send": "cat ./coverage/lcov.info | coveralls && rm -rf ./coverage/lcov.info",
+    "coveralls": "npm run coveralls:build && npm run coveralls:send",
+    "lint": "eslint src/**/*.js",
+    "cli": "env NPM_RUN_CLI=1",
+    "preversion": "npm test && npm run lint"
   },
+  "engines" : { "node" : ">=4" },
   "repository": {
     "type": "git",
     "url": "git@github.com:SimpliField/regexp-tpl.git"
@@ -24,6 +30,8 @@
   "homepage": "https://github.com/SimpliField/regexp-tpl",
   "devDependencies": {
     "coveralls": "^2.11.2",
+    "eslint": "^3.2.2",
+    "eslint-config-simplifield": "^3.0.0",
     "istanbul": "^0.3.5",
     "mocha": "^2.0.1"
   },

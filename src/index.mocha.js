@@ -1,26 +1,28 @@
-var assert = require('assert');
-var regexpTpl = require('../src/index');
+'use strict';
 
-describe('regexpTpl', function () {
+const assert = require('assert');
+const regexpTpl = require('../src/index');
 
-  it('should be a function', function() {
+describe('regexpTpl', () => {
+
+  it('should be a function', () => {
     assert(regexpTpl instanceof Function);
   });
 
-  it('should fail with a bad objs value', function() {
-    assert.throws(function() {
+  it('should fail with a bad objs value', () => {
+    assert.throws(() => {
       regexpTpl({}, 'rr');
     });
   });
 
-  it('should fail with a bad regexpTpl value', function() {
-    assert.throws(function() {
+  it('should fail with a bad regexpTpl value', () => {
+    assert.throws(() => {
       regexpTpl([], {});
     });
   });
 
-  it('should return undefined with an unmatched template', function() {
-    var tree = [];
+  it('should return undefined with an unmatched template', () => {
+    const tree = [];
 
     assert.equal(
       typeof regexpTpl(tree, 'a {foo.bar} b'),
@@ -28,14 +30,14 @@ describe('regexpTpl', function () {
     );
   });
 
-  it('should work with simple property addressing', function() {
-    var tree = [{
+  it('should work with simple property addressing', () => {
+    const tree = [{
       foo: {
-        bar: 'test'
+        bar: 'test',
       },
       bar: {
-        bar: 'test2'
-      }
+        bar: 'test2',
+      },
     }];
 
     assert.equal(
@@ -44,14 +46,14 @@ describe('regexpTpl', function () {
     );
   });
 
-  it('should work with flags', function() {
-    var tree = [{
+  it('should work with flags', () => {
+    const tree = [{
       foo: {
-        bar: 'test'
+        bar: 'test',
       },
       bar: {
-        bar: 'test2'
-      }
+        bar: 'test2',
+      },
     }];
 
     assert.equal(
@@ -60,14 +62,14 @@ describe('regexpTpl', function () {
     );
   });
 
-  it('should work with any property addressing', function() {
-    var tree = [{
+  it('should work with any property addressing', () => {
+    const tree = [{
       foo: {
-        bar: 'test'
+        bar: 'test',
       },
       bar: {
-        bar: 'test2'
-      }
+        bar: 'test2',
+      },
     }];
 
 
@@ -77,14 +79,14 @@ describe('regexpTpl', function () {
     );
   });
 
-  it('should work with a custom template regexp', function() {
-    var tree = [{
+  it('should work with a custom template regexp', () => {
+    const tree = [{
       foo: {
-        bar: 'test'
+        bar: 'test',
       },
       bar: {
-        bar: 'test2'
-      }
+        bar: 'test2',
+      },
     }];
 
 
@@ -94,19 +96,19 @@ describe('regexpTpl', function () {
     );
   });
 
-  it('should work with README samples', function() {
-    var fruits = [{
+  it('should work with README samples', () => {
+    const fruits = [{
       name: 'orange',
       count: 2,
-      colors: ['orange']
+      colors: ['orange'],
     }, {
       name: 'banana',
       count: 0,
-      colors: ['yellow', 'white']
+      colors: ['yellow', 'white'],
     }, {
       name: 'kiwi',
       count: 8,
-      colors: ['brown', 'green']
+      colors: ['brown', 'green'],
     }];
 
     assert(regexpTpl(fruits, 'My car is {colors.#}!').test('My car is brown!'));
