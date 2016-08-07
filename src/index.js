@@ -1,6 +1,6 @@
 'use strict';
 
-const escRegExp = require('escape-regexp-component');
+const escRegExp = require('escape-string-regexp');
 const miniquery = require('miniquery');
 const debug = require('debug')('regexp-tpl');
 
