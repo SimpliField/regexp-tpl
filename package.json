@@ -28,6 +28,7 @@
     "mocha": "^2.0.1"
   },
   "dependencies": {
+    "debug": "^2.2.0",
     "escape-regexp-component": "^1.0.2",
     "miniquery": "^1.0.0"
   }
