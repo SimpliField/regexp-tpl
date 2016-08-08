@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "debug": "^2.2.0",
-    "escape-regexp-component": "^1.0.2",
+    "escape-string-regexp": "^1.0.5",
     "miniquery": "^1.0.0"
   }
 }
