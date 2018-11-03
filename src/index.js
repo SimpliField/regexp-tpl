@@ -4,16 +4,15 @@ const escRegExp = require('escape-string-regexp');
 const miniquery = require('miniquery');
 const debug = require('debug')('regexp-tpl');
 
-const DEFAULT_TEMPLATE = /(.*|^)\{([a-z0-9_\-\.\*\@\#]+)\}(.*|$)/i;
+const DEFAULT_TEMPLATE = /(.*|^)\{([a-z0-9_\-.*@#]+)\}(.*|$)/i;
 
 function regexpTpl(objs, regExpTemplate, regExpFlags, templateRegExp) {
   let hasUnmatchedTemplateValues = false;
-  let regExp;
 
-  if(!(objs instanceof Array)) {
+  if (!(objs instanceof Array)) {
     throw Error('`objs` must be an instanceof `Array`');
   }
-  if('string' !== typeof regExpTemplate) {
+  if ('string' !== typeof regExpTemplate) {
     throw Error('`regExpTemplate` must be a string');
   }
 
@@ -24,29 +23,30 @@ function regexpTpl(objs, regExpTemplate, regExpFlags, templateRegExp) {
 
     debug('New template value', $2, values);
 
-    if(values.length) {
+    if (values.length) {
       return $1 + (1 === values.length ?
         escRegExp(values[0]) :
-        '(' + values.map(escRegExp).join('|') + ')') + $3;
+        `(${values.map(escRegExp).join('|')})`) + $3;
     }
 
     hasUnmatchedTemplateValues = true;
     return '';
   }
 
-  while((templateRegExp || DEFAULT_TEMPLATE).test(regExpTemplate)) {
+  while ((templateRegExp || DEFAULT_TEMPLATE).test(regExpTemplate)) {
     regExpTemplate = regExpTemplate.replace(
       (templateRegExp || DEFAULT_TEMPLATE),
       findTemplateValue
     );
   }
 
-  if(hasUnmatchedTemplateValues) {
+  if (hasUnmatchedTemplateValues) {
     debug('Could not build (unmatched template value):', regExpTemplate);
     return {}.undef;
   }
 
-  regExp = new RegExp(regExpTemplate, regExpFlags);
+  // eslint-disable-next-line
+  const regExp = new RegExp(regExpTemplate, regExpFlags);
 
   debug('Built:', regExp);
 

@@ -3,6 +3,11 @@
   "version": "2.0.0",
   "description": "Templated regular expressions.",
   "main": "src/index.js",
+  "files": [
+    "src/index.js",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "test": "mocha src/*.mocha.js",
     "cover": "istanbul cover --report html _mocha -- src/**/*.mocha.js -R spec -t 5000",
@@ -31,15 +36,15 @@
   },
   "homepage": "https://github.com/SimpliField/regexp-tpl",
   "devDependencies": {
-    "coveralls": "^2.11.2",
-    "eslint": "^3.2.2",
-    "eslint-config-simplifield": "^4.1.1",
-    "istanbul": "^0.4.4",
-    "mocha": "^3.0.1"
+    "coveralls": "^3.0.2",
+    "eslint": "^5.8.0",
+    "eslint-config-simplifield": "^8.1.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
   },
   "dependencies": {
-    "debug": "^2.4.0",
+    "debug": "^4.1.0",
     "escape-string-regexp": "^1.0.5",
-    "miniquery": "^1.0.0"
+    "miniquery": "^1.1.2"
   }
 }

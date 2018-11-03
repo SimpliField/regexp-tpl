@@ -24,7 +24,7 @@ describe('regexpTpl', () => {
   it('should return undefined with an unmatched template', () => {
     const tree = [];
 
-    assert.equal(
+    assert.strictEqual(
       typeof regexpTpl(tree, 'a {foo.bar} b'),
       'undefined'
     );
@@ -40,7 +40,7 @@ describe('regexpTpl', () => {
       },
     }];
 
-    assert.equal(
+    assert.strictEqual(
       regexpTpl(tree, 'a {foo.bar} b').toString(),
       '/a test b/'
     );
@@ -56,7 +56,7 @@ describe('regexpTpl', () => {
       },
     }];
 
-    assert.equal(
+    assert.strictEqual(
       regexpTpl(tree, 'a {foo.bar} b', 'img').toString(),
       '/a test b/gim'
     );
@@ -73,8 +73,8 @@ describe('regexpTpl', () => {
     }];
 
 
-    assert.equal(
-      regexpTpl(tree, '/:@.bar', '', /(.*\/|^):([a-z0-9_\-\.\*\@\#]+)(\/.*|$)/i).toString(),
+    assert.strictEqual(
+      regexpTpl(tree, '/:@.bar', '', /(.*\/|^):([a-z0-9_\-.*@#]+)(\/.*|$)/i).toString(),
       '/\\/(test|test2)/'
     );
   });
@@ -90,7 +90,7 @@ describe('regexpTpl', () => {
     }];
 
 
-    assert.equal(
+    assert.strictEqual(
       regexpTpl(tree, 'a {@.bar} b').toString(),
       '/a (test|test2) b/'
     );
